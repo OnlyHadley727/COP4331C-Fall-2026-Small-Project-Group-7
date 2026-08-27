@@ -15,3 +15,4 @@ and guides out there.
 - Barry Lucido
 - Zeeshan Memon
 - Adam Sadowsky
+- Thomas Boudreau
