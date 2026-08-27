@@ -13,3 +13,4 @@ and guides out there.
 # Contributors
 - Dylan Schwartz
 - Barry Lucido
+- Zeeshan Memon
