@@ -35,7 +35,7 @@
         {
             if($searchCount > 0)
             {
-                $searchResults .= ","
+                $searchResults .= ",";
             }
             $searchCount++;
             $searchResults .= '{"firstname" : "' . $row["firstname"] . '", "lastname" : "' . $row["lastname"] . '", "email" : "' . $row["email"] . '", "phone" : "' . $row["phone"] . '"}';
