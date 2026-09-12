@@ -66,12 +66,22 @@
         echo $obj;
     }
 
+    /*
+     * Takes $error, which represents an error string of
+     * caller's choice.
+     * Returns nothing, but passes JSON output indicating an error.
+     */
     function returnError($error)
     {
         $ret = '{"result":{},"error":"' . $error . '"}';
         sendResultJson($ret);
     }
 
+    /*
+     * Takes $result, containing a user's information.
+     * Represents a successful login attempt.
+     * This finishes constructing JSON to be passed back out.
+     */
     function returnInfo($result)
     {
         $ret = '{"result":' . $result . ',"error":""}';
