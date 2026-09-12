@@ -11,7 +11,7 @@
      * API_DB_USER = database account name
      * API_DB_PASS = database account password
      */
-    $conn = new mysqli("localhost", getenv('API_DB_USER'), getenv('API_DB_PASS'), "Contact_Manager")
+    $conn = new mysqli("localhost", getenv('API_DB_USER'), getenv('API_DB_PASS'), "Contact_Manager");
     if($conn->connect_error)
     {
         returnError($conn->connect_error);
