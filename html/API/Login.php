@@ -74,7 +74,7 @@
 
     function returnInfo($result)
     {
-        $ret = '{"result":{' . $result . '},"error":""}';
+        $ret = '{"result":' . $result . ',"error":""}';
         sendResultJson($ret);
     }
 
