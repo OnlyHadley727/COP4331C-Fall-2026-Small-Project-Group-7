@@ -28,7 +28,7 @@
         $stmt->bind_param("sss", $searchName, $searchName, $inData["userID"]);
         $stmt->execute();
 
-        $result = stmt->get_result();
+        $result = $stmt->get_result();
 
         //Evil and intimidating JSON
         while($row = $result->fetch_assoc())
@@ -94,6 +94,7 @@
     function returnSearchInfo($searchResults)
     {
         $ret = '{"results":[' . $searchResults . '],"error":""}';
+        sendResultJson($ret);
     }
 
 ?>
