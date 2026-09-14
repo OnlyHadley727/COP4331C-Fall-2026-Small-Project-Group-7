@@ -83,6 +83,7 @@
      */
     function returnError($error)
     {
+        http_response_code(400);
         $ret = '{"results":[],"error":"' . $error . '"}';
         sendResultJson($ret);
     }
@@ -93,6 +94,7 @@
      */
     function returnSearchInfo($searchResults)
     {
+        http_response_code(200);
         $ret = '{"results":[' . $searchResults . '],"error":""}';
         sendResultJson($ret);
     }
