@@ -12,6 +12,7 @@
     if(empty($inData["username"]) or empty($inData["password"] or empty($inData["firstname"]) or empty($inData["lastname"])))
     {
         returnError("Please fill in all fields.");
+        return;
     }
 
     if($conn->connect_error)
