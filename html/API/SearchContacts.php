@@ -23,7 +23,7 @@
          * While an empty search string can work, there must be a userID.
          * userID comes from a user's id column of the users table.
          */
-        $stmt = $conn->prepare("SELECT firstname, lastname, email, phone FROM contacts WHERE (firstname LIKE ? OR lastname LIKE ?) AND userID=?");
+        $stmt = $conn->prepare("SELECT firstname, lastname, email, phone, id FROM contacts WHERE (firstname LIKE ? OR lastname LIKE ?) AND userID=?");
         $searchName = "%" . $inData["search"] . "%";
         $stmt->bind_param("sss", $searchName, $searchName, $inData["userID"]);
         $stmt->execute();
@@ -38,7 +38,13 @@
                 $searchResults .= ",";
             }
             $searchCount++;
-            $searchResults .= '{"firstname" : "' . $row["firstname"] . '", "lastname" : "' . $row["lastname"] . '", "email" : "' . $row["email"] . '", "phone" : "' . $row["phone"] . '"}';
+            $searchResults .= '{
+                "firstname" : "' . $row["firstname"] . '",
+                "lastname" : "' . $row["lastname"] . '",
+                "email" : "' . $row["email"] . '",
+                "phone" : "' . $row["phone"] . '",
+                "id" : "' . $row["id"] . '"
+            }';
         }
 
         if($searchCount == 0)
