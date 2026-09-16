@@ -9,7 +9,7 @@
      */
     $conn = new mysqli("localhost", getenv('API_DB_USER'), getenv('API_DB_PASS'), "Contact_Manager");
 
-    if(empty($inData["username"]) or empty($inData["password"] or empty($inData["firstname"]) or empty($inData["lastname"])))
+    if(empty($inData["id"]) or empty($inData["firstname"]) or empty($inData["lastname"] or empty($inData["email"]) or empty($inData["phone"])))
     {
         returnError("Please fill in all fields.");
         return;
@@ -25,8 +25,8 @@
          * Attempts to submit a new user into database table
          */
         try {
-            $stmt = $conn->prepare("INSERT INTO `users` VALUES (0, ?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["username"], $inData["password"]);
+            $stmt = $conn->prepare("UPDATE contacts SET firstname = ?, lastname = ?, email = ?, phone = ? WHERE id = ?");
+            $stmt->bind_param("sssss", $inData["firstname"], $inData["lastname"], $inData["email"], $inData["phone"], $inData["id"]);
             $status = $stmt->execute();
         }
 
