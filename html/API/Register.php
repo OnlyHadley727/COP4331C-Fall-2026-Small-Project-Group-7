@@ -23,18 +23,18 @@
         /*
          * Attempts to submit a new user into database table
          */
-        $stmt = $conn->prepare("INSERT INTO `users` VALUES (0, ?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["username"], $inData["password"]);
-        $status = $stmt->execute();
+        try {
+            $stmt = $conn->prepare("INSERT INTO `users` VALUES (0, ?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["username"], $inData["password"]);
+            $status = $stmt->execute();
+        }
 
-        if($status == true)
-        {
-            returnSuccess();
-        }
-        else
-        {
+        catch (Exception $e) {
             returnError("The username or password you entered is not valid.");
+            return;
         }
+
+        returnSuccess();
 
         $stmt->close();
         $conn->close();
