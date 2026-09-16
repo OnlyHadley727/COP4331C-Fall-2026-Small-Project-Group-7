@@ -22,7 +22,7 @@
     else
     {
         /*
-         * Attempts to submit a new user into database table
+         * Attempts to submit edits to a contact based on their ID
          */
         try {
             $stmt = $conn->prepare("UPDATE contacts SET firstname = ?, lastname = ?, email = ?, phone = ? WHERE id = ?");
@@ -31,7 +31,7 @@
         }
 
         catch (Exception $e) {
-            returnError("The username or password you entered is not valid.");
+            returnError("The edit failed. Please try again.");
             return;
         }
 
