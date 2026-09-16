@@ -1,5 +1,4 @@
 <?php
-
     $inData = getRequestInfo();
 
     /*
@@ -9,13 +8,14 @@
      * API_DB_PASS = database account password
      */
     $conn = new mysqli("localhost", getenv('API_DB_USER'), getenv('API_DB_PASS'), "Contact_Manager");
+
     if($conn->connect_error)
     {
         returnError($conn->connect_error);
     }
-    elseif(empty($inData["username"]) or empty($inData["password"]))
+    elseif(empty($inData["username"]) or empty($inData["password"] or empty($inData["firstname"]) or empty($inData["lastname"])))
     {
-        returnError("Please enter a username and password.");
+        returnError("Please fill in all fields.");
     }
     else
     {
@@ -25,8 +25,8 @@
          * Precautions should be taken beforehand to ensure that no
          * duplicate users exist.
          */
-        $stmt = $conn->prepare("SELECT id, firstname, lastname FROM users WHERE username=? AND password=?");
-        $stmt->bind_param("ss", $inData["username"], $inData["password"]);
+        $stmt = $conn->prepare("INSERT INTO `users` VALUES (0, ?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["username"], $inData["password"]);
         $stmt->execute();
 
         $row = $stmt->get_result()->fetch_assoc();
@@ -73,7 +73,7 @@
      */
     function returnError($error)
     {
-        http_response_code(401);
+        http_response_code(400);
         $ret = '{"result":{},"error":"' . $error . '"}';
         sendResultJson($ret);
     }
