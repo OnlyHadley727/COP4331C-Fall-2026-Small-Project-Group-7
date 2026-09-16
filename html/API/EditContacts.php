@@ -27,11 +27,16 @@
         try {
             $stmt = $conn->prepare("UPDATE contacts SET firstname = ?, lastname = ?, email = ?, phone = ? WHERE id = ?");
             $stmt->bind_param("sssss", $inData["firstname"], $inData["lastname"], $inData["email"], $inData["phone"], $inData["id"]);
-            $status = $stmt->execute();
+            $stmt->execute();
         }
 
         catch (Exception $e) {
             returnError("The edit failed. Please try again.");
+            return;
+        }
+
+        if ($conn->affected_rows == 0) {
+            returnError("No contact found with supplied ID");
             return;
         }
 
