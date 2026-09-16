@@ -20,10 +20,7 @@
     else
     {
         /*
-         * Queries the database for user information. Only returns
-         * the result that perfectly matches user credentials.
-         * Precautions should be taken beforehand to ensure that no
-         * duplicate users exist.
+         * Attempts to submit a new user into database table
          */
         $stmt = $conn->prepare("INSERT INTO `users` VALUES (0, ?, ?, ?, ?)");
         $stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["username"], $inData["password"]);
@@ -31,8 +28,7 @@
 
         if($status == true)
         {
-            $result .= '{"status": "Success"}';
-            returnInfo($result);
+            returnSuccess();
         }
         else
         {
@@ -78,15 +74,12 @@
     }
 
     /*
-     * Takes $result, containing a user's information.
-     * Represents a successful login attempt.
-     * This finishes constructing JSON to be passed back out.
+     * Outputs a simple "Success" string in the status field.
      */
-    function returnInfo($result)
+    function returnSuccess()
     {
         http_response_code(200);
-        $ret = '{"result":' . $result . ',"error":""}';
+        $ret = '{"status":"Success"}';
         sendResultJson($ret);
     }
-
 ?>
