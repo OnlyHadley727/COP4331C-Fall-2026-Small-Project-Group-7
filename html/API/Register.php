@@ -9,13 +9,14 @@
      */
     $conn = new mysqli("localhost", getenv('API_DB_USER'), getenv('API_DB_PASS'), "Contact_Manager");
 
+    if(empty($inData["username"]) or empty($inData["password"] or empty($inData["firstname"]) or empty($inData["lastname"])))
+    {
+        returnError("Please fill in all fields.");
+    }
+
     if($conn->connect_error)
     {
         returnError($conn->connect_error);
-    }
-    elseif(empty($inData["username"]) or empty($inData["password"] or empty($inData["firstname"]) or empty($inData["lastname"])))
-    {
-        returnError("Please fill in all fields.");
     }
     else
     {
