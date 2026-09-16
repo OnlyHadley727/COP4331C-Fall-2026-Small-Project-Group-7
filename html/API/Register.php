@@ -27,17 +27,16 @@
          */
         $stmt = $conn->prepare("INSERT INTO `users` VALUES (0, ?, ?, ?, ?)");
         $stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["username"], $inData["password"]);
-        $stmt->execute();
+        $status = $stmt->execute();
 
-        $row = $stmt->get_result()->fetch_assoc();
-        if(!is_null($row))
+        if($status == true)
         {
-            $result .= '{"id" : "' . $row["id"] . '", "firstname" : "' . $row["firstname"] . '", "lastname" : "' . $row["lastname"] . '"}';
+            $result .= '{"status": "Success"}';
             returnInfo($result);
         }
         else
         {
-            returnError("The username or password you entered is incorrect.");
+            returnError("The username or password you entered is not valid.");
         }
 
         $stmt->close();
@@ -74,7 +73,7 @@
     function returnError($error)
     {
         http_response_code(400);
-        $ret = '{"result":{},"error":"' . $error . '"}';
+        $ret = '{"status":"Error","error":"' . $error . '"}';
         sendResultJson($ret);
     }
 
