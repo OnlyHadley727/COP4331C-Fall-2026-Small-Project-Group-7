@@ -74,7 +74,11 @@
     function returnError($error)
     {
         http_response_code(401);
-        $ret = '{"result":{},"error":"' . $error . '"}';
+        $ret = '{
+            "results":{},
+            "status": "Error",
+            "error":"' . $error . '"
+        }';
         sendResultJson($ret);
     }
 
@@ -86,7 +90,10 @@
     function returnInfo($result)
     {
         http_response_code(200);
-        $ret = '{"result":' . $result . ',"error":""}';
+        $ret = '{
+            "result":' . $result . ',
+            "status":"Success"
+        }';
         sendResultJson($ret);
     }
 
