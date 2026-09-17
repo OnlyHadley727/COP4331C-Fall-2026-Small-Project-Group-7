@@ -17,3 +17,4 @@ and guides out there.
 - Adam Sadowsky
 - Thomas Boudreau
 - Nikolai Colon
+- Hadley Horton
