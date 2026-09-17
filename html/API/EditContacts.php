@@ -31,12 +31,27 @@
         }
 
         catch (Exception $e) {
-            returnError("The edit failed. Please try again.");
+            returnError("An error occurred. Please try again.");
             return;
         }
 
-        if ($conn->affected_rows == 0) {
+        /*
+         * Rows matched: x Changed: y Warnings: z
+         * $matches[0][0] = x
+         * $matches[0][1] = y
+         * $matches[0][2] = z
+         */
+        preg_match_all("/\d+/", $conn->info, $matches);
+
+
+        if ( $matches[0][0] == 0 ) {
             returnError("No contact found with supplied ID");
+            return;
+        }
+
+        if ( $matches[0][1] == 0 )
+        {
+            returnError("The contact was not updated. Did you change any information?");
             return;
         }
 
