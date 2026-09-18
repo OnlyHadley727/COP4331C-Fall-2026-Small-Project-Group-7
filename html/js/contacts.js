@@ -1,4 +1,5 @@
-const search = document.getElementById("search")
+const searchForm = document.getElementById("search-form")
+const searchBar = document.getElementById("search-bar")
 const trash = document.getElementById("trash")
 const add = document.getElementById("add")
 
@@ -10,14 +11,11 @@ const testUser = {
       id: 2
     }
 
+sessionStorage.setItem("user", JSON.stringify(testUser))
+
 contacts()
 
 async function contacts() {
-
-    search.addEventListener("click", () => {
-        //window.location.href = "searchContacts.html"
-        console.log("navigating to searchContacts")
-    })
 
     trash.addEventListener("click", () => {
         //window.location.href = "deleteContacts.html"
@@ -29,37 +27,64 @@ async function contacts() {
         console.log("navigating to addContacts")
     })
 
-    /*let userContacts = await fetchContacts()
+    searchForm.addEventListener("submit", async (e) => {
+        e.preventDefault()
+        const searched = await fetchContacts()
+        const contactsList = document.getElementById("contacts-list")
+
+        if(!searched || searched.results.length === 0) {
+            contactsList.textContent = "No contacts"
+            console.log("No results")
+            return
+        }
+
+        displayContacts(searched)
+    })
+
+    let userContacts = await fetchContacts()
     
     if(!userContacts) {
         return
-    }*/
+    }
 
-   let userContacts = { results: [{ firstName: "John", lastName: "Smith" } ,
-        { firstName: "Jason", lastName: "Bourne" },
-        { firstName: "Matt", lastName: "Damon" },
-        { firstName: "John", lastName: "Smith" } ,
-        { firstName: "Jason", lastName: "Bourne" },
-        { firstName: "Matt", lastName: "Damon" },
-        { firstName: "John", lastName: "Smith" } ,
-        { firstName: "Jason", lastName: "Bourne" },
-        { firstName: "Matt", lastName: "Damon" }
-    ]}
+   /*let userContacts = { results: [{ firstName: "John", lastName: "Smith" } ,
+        { firstname: "Jason", lastname: "Bourne" },
+        { firstname: "Matt", lastname: "Damon" },
+        { firstname: "John", lastname: "Smith" } ,
+        { firstname: "Jason", lastname: "Bourne" },
+        { firstname: "Matt", lastname: "Damon" },
+        { firstname: "John", lastname: "Smith" } ,
+        { firstname: "Jason", lastname: "Bourne" },
+        { firstname: "Matt", lastname: "Damon" }
+    ]}*/
 
+    displayContacts(userContacts)
+     
+}
+
+function displayContacts(userContacts) {
     const contactsList = document.getElementById("contacts-list")
+    contactsList.innerHTML = ""
     userContacts.results.forEach((e) => {
         const contact = document.createElement("div")
-        contact.textContent = e.firstName + " " + e.lastName
+        contact.textContent = e.firstname + " " + e.lastname
         contactsList.append(contact)
     });
-     
-
-
 }
 
 async function fetchContacts() {
     try {
-        const res = await fetch("")
+        const user = JSON.parse(sessionStorage.getItem("user"))
+        const res = await fetch("API/SearchContacts.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                search: searchBar.value,
+                userID: user.id
+            })
+        })
 
         if(!res.ok) {
             console.log("response error")

@@ -4,13 +4,13 @@ body {
 
 h1 {
     margin: 0;
-    margin-top: 15px;
+    margin-top: 10px;
     text-align: center;
 }
 
 .contacts-screen {
-    height: 600px;
-    margin: 75px 150px;
+    height: 550px;
+    margin: 25px 150px;
     background-color: rgb(222, 221, 221);
     border: 2px solid black;
 }
@@ -18,25 +18,26 @@ h1 {
 .bttn-wrap {
     display: flex;
     justify-content: right;
-    margin: 5px 10px;
+    margin: 0;
 }
 
-#search, #trash, #add {
-    margin: 15px;
+#trash, #add {
+    margin-right: 15px;
     border: none;
     font-size: 28px;
     background-color: rgb(222, 221, 221);
 }
 
-#search:hover, #trash:hover, #add:hover {
+#trash:hover, #add:hover {
     background-color: rgb(189, 188, 188);
 }
 
 #contacts-list {
     width: 50%;
-    height: 385px;
+    height: 315px;
     margin: 5px auto;
     overflow:auto;
+    text-align: center;
 }
 
 #contacts-list div {
@@ -46,8 +47,19 @@ h1 {
     font-size: 24px;
     margin: 15px;
     background-color: aliceblue;
+    text-align: left;
 }
 
 #contacts-list div:hover {
     background-color: rgb(192, 205, 217);
+}
+
+#search-bar {
+    display: block;
+    border: 2px solid black;
+    border-radius: 16px;
+    margin: 25px auto;
+    font-size: 20px;
+    padding: 12px;
+    width: 50%;
 }
