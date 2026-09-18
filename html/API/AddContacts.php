@@ -20,7 +20,17 @@
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
-	} 
+	}
+	elseif(empty($userID))
+	{
+		//This should not happen, but it'll be useful to have an error for this just in case.
+		returnWithError("Could not access your ID. Are you logged in?");
+	}
+	elseif(empty($firstname))
+	{
+		//All user-submitted data besides first name is optional
+		returnwithError("Please enter a first name.");
+	}
 	else
 	{
 	    /*
