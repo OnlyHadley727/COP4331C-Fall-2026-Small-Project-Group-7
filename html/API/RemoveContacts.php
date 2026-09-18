@@ -34,7 +34,7 @@
 	         */
 			if ($stmt->affected_rows > 0)
 			{
-				returnWithSuccess("Success");
+				returnWithSuccess();
 			}
 			else
 			{
@@ -79,7 +79,10 @@
      */
 	function returnWithError($err)
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{
+			"status":"Error",
+			"error":"' . $err . '"
+		}';
 		sendResultInfoAsJson($retValue);
 	}
 
@@ -89,9 +92,9 @@
      * Represents a successful contact removal.
      * This finishes constructing JSON to be passed back out.
 	 */
-	function returnWithSuccess($message)
+	function returnWithSuccess()
 	{
-		$retValue = '{"success":"' . $message . '"}';
+		$retValue = '{"status":"Success"}';
 		sendResultInfoAsJson($retValue);
 	}
 ?>
