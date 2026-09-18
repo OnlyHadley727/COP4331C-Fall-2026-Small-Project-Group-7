@@ -79,6 +79,7 @@
      */
 	function returnWithError($err)
 	{
+		http_response_code(400);
 		$retValue = '{
 			"status":"Error",
 			"error":"' . $err . '"
@@ -94,6 +95,7 @@
 	 */
 	function returnWithSuccess()
 	{
+		http_response_code(200);
 		$retValue = '{"status":"Success"}';
 		sendResultInfoAsJson($retValue);
 	}
