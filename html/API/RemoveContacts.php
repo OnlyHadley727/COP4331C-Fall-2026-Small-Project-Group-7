@@ -17,7 +17,11 @@
 	if ($conn->connect_error) 
 	{
 		returnWithError($conn->connect_error);
-	} 
+	}
+	elseif(empty($id))
+	{
+		returnWithError("No target ID detected. Did you select a contact?");
+	}
 	else
 	{
 		/*
