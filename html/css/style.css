@@ -1,5 +1,53 @@
+body {
+    background-color: silver;
+}
+
 h1 {
-    margin-top: 50px;
+    margin: 0;
+    margin-top: 15px;
     text-align: center;
 }
 
+.contacts-screen {
+    height: 600px;
+    margin: 75px 150px;
+    background-color: rgb(222, 221, 221);
+    border: 2px solid black;
+}
+
+.bttn-wrap {
+    display: flex;
+    justify-content: right;
+    margin: 5px 10px;
+}
+
+#search, #trash, #add {
+    margin: 15px;
+    border: none;
+    font-size: 28px;
+    background-color: rgb(222, 221, 221);
+}
+
+#search:hover, #trash:hover, #add:hover {
+    background-color: rgb(189, 188, 188);
+}
+
+#contacts-list {
+    width: 50%;
+    height: 385px;
+    margin: 5px auto;
+    overflow:auto;
+}
+
+#contacts-list div {
+    border: 1px solid black;
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 24px;
+    margin: 15px;
+    background-color: aliceblue;
+}
+
+#contacts-list div:hover {
+    background-color: rgb(192, 205, 217);
+}
