@@ -10,14 +10,16 @@
     <body>
         <div class="contacts-screen">
             <h1>Contacts</h1>
-            <form id="search-form">
-                <input id="search-bar" placeholder="Search Contacts..." type="text"/>
+            <form class="contact-form" id="search-form">
+                <input class="text-input" id="search-bar" placeholder="Search Contacts..." type="text"/>
             </form>
             <div class="bttn-wrap">
                 <button id="trash">🗑</button>
                 <button id="add">+</button>
+                <button id="edit">✏️</button>
             </div>
 
+            <p id="edit-msg"></p>
             <div id="contacts-list">
             </div>
         </div>

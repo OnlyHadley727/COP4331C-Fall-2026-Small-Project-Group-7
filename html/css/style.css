@@ -2,6 +2,12 @@ body {
     background-color: silver;
 }
 
+#edit-msg {
+    margin: 0px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 h1 {
     margin: 0;
     margin-top: 10px;
@@ -21,21 +27,25 @@ h1 {
     margin: 0;
 }
 
-#trash, #add {
+#trash, #add, #edit{
     margin-right: 15px;
     border: none;
     font-size: 28px;
     background-color: rgb(222, 221, 221);
 }
 
-#trash:hover, #add:hover {
+#edit {
+    font-size: 20px;
+}
+
+#trash:hover, #add:hover, #edit:hover {
     background-color: rgb(189, 188, 188);
 }
 
 #contacts-list {
     width: 50%;
     height: 315px;
-    margin: 5px auto;
+    margin: 0px auto;
     overflow:auto;
     text-align: center;
 }
@@ -62,4 +72,59 @@ h1 {
     font-size: 20px;
     padding: 12px;
     width: 50%;
+}
+
+.contact-bttn {
+    display: block;
+    border: 2px solid black;
+    border-radius: 16px;
+    width: 25%;
+    background-color: aliceblue;
+    margin: 25px auto;
+    font-size: 20px;
+    padding: 8px;
+}
+
+.input-wrap {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 16px;
+    margin: 25px auto;
+    width: 50%;
+    font-size: 18px;
+    background-color: white;
+    padding-left: 8px;
+}
+
+.text-input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 16px;
+    font-size: 18px;
+    padding: 8px;
+}
+
+.text-input:focus {
+    outline: none;
+}
+
+#first-name, #last-name {
+    padding-left: 32px;
+}
+
+#error {
+    text-align: center;
+    color: red;
+    font-size: 18px;
+}
+
+#save:hover, #cancel:hover {
+    background-color: rgb(181, 186, 192);
+}
+
+#edit-msg {
+    text-align: center;
+    font-size: 18px;
 }
