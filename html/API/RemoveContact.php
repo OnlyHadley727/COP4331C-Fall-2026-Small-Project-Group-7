@@ -1,7 +1,6 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$userID = $inData["userID"];
 	$id = $inData["id"];
 	
 
@@ -12,8 +11,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("DELETE FROM contacts WHERE id = ? AND userID = ?");
-		$stmt->bind_param("ss", $id, $userID);
+		$stmt = $conn->prepare("DELETE FROM contacts WHERE id = ?");
+		$stmt->bind_param("s", $id);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
@@ -36,5 +35,4 @@
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
 ?>
