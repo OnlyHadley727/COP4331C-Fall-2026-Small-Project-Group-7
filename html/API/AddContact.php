@@ -31,7 +31,7 @@
 		$stmt->bind_param("sssss", $userID, $firstname, $lastname, $email, $phone);
 		if ($stmt->execute())
 		{
-    		returnWithSuccess("Success");
+    		returnWithSuccess();
 		}
 		else
 		{
@@ -70,7 +70,11 @@
      */
 	function returnWithError($err)
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		http_response_code(400);
+		$retValue = '{
+			"status":"Error",
+			"error":"' . $err . '"
+		}';
 		sendResultInfoAsJson($retValue);
 	}
 
@@ -80,9 +84,10 @@
      * Represents a successful contact addition.
      * This finishes constructing JSON to be passed back out.
 	 */
-	function returnWithSuccess($message)
+	function returnWithSuccess()
 	{
-   		$retValue = '{"success":"' . $message . '"}';
-    	sendResultInfoAsJson($retValue);
+		http_response_code(200);
+		$retValue = '{"status":"Success"}';
+		sendResultInfoAsJson($retValue);
 	}
 ?>
