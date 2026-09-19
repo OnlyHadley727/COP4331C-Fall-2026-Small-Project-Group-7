@@ -61,7 +61,7 @@ async function contacts() {
         return
     }*/
 
-   let userContacts = { results: [{ firstname: "John", lastname: "Smith", phone:"123-456-7891", email: "test@gmail.com" },
+   let userContacts = { results: [{id: 1, firstname: "John", lastname: "Smith", phone:"123-456-7891", email: "test@gmail.com" },
         { id: 1, firstname: "Jason", lastname: "Bourne", phone:"123-456-7891", email: "test@gmail.com" },
         { id: 1, firstname: "Matt", lastname: "Damon", phone:"123-456-7891", email: "test@gmail.com" },
         { id: 1, firstname: "John", lastname: "Smith", phone:"123-456-7891", email: "test@gmail.com" },
