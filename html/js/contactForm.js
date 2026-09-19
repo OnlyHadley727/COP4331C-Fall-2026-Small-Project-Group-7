@@ -71,7 +71,7 @@ cancel.addEventListener("click", () => {
 
 async function editContact() {
     try {
-        const res = await fetch("API/EditContacts.php", {
+        const res = await fetch("http://68.183.24.52/API/EditContacts.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -99,7 +99,7 @@ async function editContact() {
 
 async function addContact() {
     try {
-        const res = await fetch("API/AddContacts.php", {
+        const res = await fetch("http://68.183.24.52/API/AddContacts.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
