@@ -11,8 +11,6 @@ const testUser = {
   "id": 2,
   "firstname": "Clark",
   "lastname": "Kent",
-  "username": "SuperMan",
-  "password": "{MD5 Hashed Password String}"
 }
 
 sessionStorage.setItem("user", JSON.stringify(testUser))
