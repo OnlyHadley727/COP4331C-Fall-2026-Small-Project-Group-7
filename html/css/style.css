@@ -1,5 +1,130 @@
+body {
+    background-color: silver;
+}
+
+#edit-msg {
+    margin: 0px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 h1 {
-    margin-top: 50px;
+    margin: 0;
+    margin-top: 10px;
     text-align: center;
 }
 
+.contacts-screen {
+    height: 550px;
+    margin: 25px 150px;
+    background-color: rgb(222, 221, 221);
+    border: 2px solid black;
+}
+
+.bttn-wrap {
+    display: flex;
+    justify-content: right;
+    margin: 0;
+}
+
+#trash, #add, #edit{
+    margin-right: 15px;
+    border: none;
+    font-size: 28px;
+    background-color: rgb(222, 221, 221);
+}
+
+#edit {
+    font-size: 20px;
+}
+
+#trash:hover, #add:hover, #edit:hover {
+    background-color: rgb(189, 188, 188);
+}
+
+#contacts-list {
+    width: 50%;
+    height: 315px;
+    margin: 0px auto;
+    overflow:auto;
+    text-align: center;
+}
+
+#contacts-list div {
+    border: 1px solid black;
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 24px;
+    margin: 15px;
+    background-color: aliceblue;
+    text-align: left;
+}
+
+#contacts-list div:hover {
+    background-color: rgb(192, 205, 217);
+}
+
+#search-bar {
+    display: block;
+    border: 2px solid black;
+    border-radius: 16px;
+    margin: 25px auto;
+    font-size: 20px;
+    padding: 12px;
+    width: 50%;
+}
+
+.contact-bttn {
+    display: block;
+    border: 2px solid black;
+    border-radius: 16px;
+    width: 25%;
+    background-color: aliceblue;
+    margin: 25px auto;
+    font-size: 20px;
+    padding: 8px;
+}
+
+.input-wrap {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 16px;
+    margin: 25px auto;
+    width: 50%;
+    font-size: 18px;
+    background-color: white;
+    padding-left: 8px;
+}
+
+.text-input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 16px;
+    font-size: 18px;
+    padding: 8px;
+}
+
+.text-input:focus {
+    outline: none;
+}
+
+#first-name, #last-name {
+    padding-left: 32px;
+}
+
+#error {
+    text-align: center;
+    color: red;
+    font-size: 18px;
+}
+
+#save:hover, #cancel:hover {
+    background-color: rgb(181, 186, 192);
+}
+
+#edit-msg {
+    text-align: center;
+    font-size: 18px;
+}
