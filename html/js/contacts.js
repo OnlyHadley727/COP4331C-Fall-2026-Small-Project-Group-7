@@ -6,14 +6,7 @@ const edit = document.getElementById("edit")
 const editMsg = document.getElementById("edit-msg")
 let editFlag = false
 let deleteFlag = false
-
-const testUser = {
-  "id": 2,
-  "firstname": "Clark",
-  "lastname": "Kent",
-}
-
-sessionStorage.setItem("user", JSON.stringify(testUser))
+let warningOpen = false
 
 contacts()
 
@@ -73,17 +66,6 @@ async function contacts() {
         return
     }
 
-  /* let userContacts = { results: [{id: 1, firstname: "John", lastname: "Smith", phone:"123-456-7891", email: "test@gmail.com" },
-        { id: 1, firstname: "Jason", lastname: "Bourne", phone:"123-456-7891", email: "test@gmail.com" },
-        { id: 1, firstname: "Matt", lastname: "Damon", phone:"123-456-7891", email: "test@gmail.com" },
-        { id: 1, firstname: "John", lastname: "Smith", phone:"123-456-7891", email: "test@gmail.com" },
-        { id: 1, firstname: "Jason", lastname: "Bourne", phone:"123-456-7891", email: "test@gmail.com" },
-        { id: 1, firstname: "Matt", lastname: "Damon", phone:"123-456-7891", email: "test@gmail.com" },
-        { id: 1, firstname: "John", lastname: "Smith", phone:"123-456-7891", email: "test@gmail.com" },
-        { id: 1, firstname: "Jason", lastname: "Bourne", phone:"123-456-7891", email: "test@gmail.com" },
-        { id: 1, firstname: "Matt", lastname: "Damon", phone:"123-456-7891", email: "test@gmail.com" }
-    ]}*/
-
     displayContacts(userContacts)
      
 }
@@ -92,12 +74,23 @@ function displayContacts(userContacts) {
     const contactsList = document.getElementById("contacts-list")
     contactsList.innerHTML = ""
     userContacts.results.forEach((e) => {
+        console.log(e)
         const contact = document.createElement("div")
-        contact.textContent = e.firstname + " " + e.lastname
+        contact.classList.add("contact")
+        const name = document.createElement("div")
+        name.classList.add("info")
+        name.id = "name"
+        name.textContent = e.firstname + " " + e.lastname
+        const phoneNumber = document.createElement("div")
+        phoneNumber.classList.add("info")
+        phoneNumber.id = "phone"
+        phoneNumber.textContent = e.phone
+        contact.append(name, phoneNumber)
+        
         contactsList.append(contact)
 
         contact.addEventListener("click", async () => {
-            if(!editFlag && !deleteFlag) {
+            if(!editFlag && !deleteFlag || warningOpen) {
                 return
             }
 
@@ -105,12 +98,40 @@ function displayContacts(userContacts) {
                 sessionStorage.setItem("editContact", JSON.stringify(e))
                 window.location.href = "contactForm.html?mode=edit"
             } else if(deleteFlag) {
-                const res = await deleteContact(e.id)
-                window.location.href = "contacts.html"
+                trash.disabled = true
+                warningOpen = true
+                const warning = document.createElement("div")
+                warning.classList.add("warning")
+                const msg = document.createElement("div")
+                msg.textContent = "Are you sure you want to delete this contact?"
+                const buttonRow = document.createElement("div")
+                buttonRow.classList.add("buttonRow")
+                const yes = document.createElement("button")
+                yes.textContent = "Yes"
+                const no = document.createElement("button")
+                no.textContent = "No"
+                buttonRow.append(yes, no)
+                warning.append(msg, buttonRow)
+                document.body.append(warning)
 
-                if(!res) {
-                    return
-                }
+                yes.addEventListener("click", async () => {
+                    const res = await deleteContact(e.id)
+
+                    if(!res) {
+                        warning.remove()
+                        trash.disabled = false
+                        warningOpen = false
+                        return
+                    }
+
+                    window.location.href = "contacts.html"
+                })
+
+                no.addEventListener("click", () => {
+                    warning.remove()
+                    trash.disabled = false
+                    warningOpen = false
+                })
             }
         })        
     });
@@ -143,7 +164,6 @@ async function fetchContacts() {
 
 async function deleteContact(id) {
     try {
-        const user = JSON.parse(sessionStorage.getItem("user"))
         const res = await fetch("http://68.183.24.52/API/RemoveContacts.php", {
             method: "POST",
             headers: {
