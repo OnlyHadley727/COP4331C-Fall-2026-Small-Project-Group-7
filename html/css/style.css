@@ -1,5 +1,9 @@
 body {
+    display: flex;
     background-color: silver;
+    justify-content: center;
+    min-height: calc(100vh - 160px);
+    margin: 50px 50px;
 }
 
 #edit-msg {
@@ -15,10 +19,11 @@ h1 {
 }
 
 .contacts-screen {
-    height: 550px;
-    margin: 25px 150px;
+    width: 80%;
+    max-width: 1200px;
     background-color: rgb(222, 221, 221);
     border: 2px solid black;
+    margin: 0;
 }
 
 .bttn-wrap {
@@ -50,14 +55,28 @@ h1 {
     text-align: center;
 }
 
-#contacts-list div {
+#contacts-list > div {
     border: 1px solid black;
     border-radius: 16px;
     padding: 16px;
     font-size: 24px;
     margin: 15px;
-    background-color: aliceblue;
+    background-color: white;
     text-align: left;
+}
+
+.contact {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#name {
+    font-size: 24px;
+}
+
+#phone {
+    font-size: 18px;
 }
 
 #contacts-list div:hover {
@@ -66,7 +85,7 @@ h1 {
 
 #search-bar {
     display: block;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 16px;
     margin: 25px auto;
     font-size: 20px;
@@ -79,7 +98,7 @@ h1 {
     border: 2px solid black;
     border-radius: 16px;
     width: 25%;
-    background-color: aliceblue;
+    background-color: white;
     margin: 25px auto;
     font-size: 20px;
     padding: 8px;
@@ -121,10 +140,53 @@ h1 {
 }
 
 #save:hover, #cancel:hover {
-    background-color: rgb(181, 186, 192);
+    background-color: rgb(192, 205, 217);
 }
 
 #edit-msg {
     text-align: center;
     font-size: 18px;
+}
+
+.warning {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 80%;
+    max-width: 600px;
+    height: 200px;
+    background-color: silver;
+    border: 1px solid black;
+}
+
+.warning > div {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.buttonRow {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.buttonRow button {
+    display: block;
+    border: 1px solid black;
+    border-radius: 16px;
+    width: 25%;
+    background-color: white;
+    margin: 25px auto;
+    font-size: 24px;
+    padding: 8px;
+}
+
+.buttonRow button:hover {
+    background-color: rgb(192, 205, 217);
 }
