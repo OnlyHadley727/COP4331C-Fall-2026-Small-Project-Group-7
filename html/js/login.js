@@ -8,7 +8,7 @@ const loginError = document.getElementById("login-error")
 const registerError = document.getElementById("register-error")
 const registerSuccess = document.getElementById("register-success")
 
-const API_BASE = "http://68.183.24.52/API"
+const API_BASE = "http://cop4331-contact-manager.xyz/API"
 
 registerPage.addEventListener("click", (e) => {
     e.preventDefault()
