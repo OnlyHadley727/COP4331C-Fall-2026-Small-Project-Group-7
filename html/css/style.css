@@ -128,3 +128,56 @@ h1 {
     text-align: center;
     font-size: 18px;
 }
+
+.login-screen {
+    min-height: 500px;
+    height: auto;
+    padding: 30px 0;
+}
+
+.login-screen h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.login-screen .input-wrap {
+    width: 50%;
+}
+
+.error-message {
+    text-align: center;
+    color: red;
+    font-size: 18px;
+    min-height: 22px;
+    margin: 5px 0;
+}
+
+.success-message {
+    text-align: center;
+    color: green;
+    font-size: 18px;
+    min-height: 22px;
+    margin: 5px 0;
+}
+
+.account-text {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.account-text a {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.account-text a:hover {
+    color: darkblue;
+}

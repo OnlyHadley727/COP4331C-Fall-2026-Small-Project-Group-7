@@ -7,14 +7,6 @@ const editMsg = document.getElementById("edit-msg")
 let editFlag = false
 let deleteFlag = false
 
-const testUser = {
-  "id": 2,
-  "firstname": "Clark",
-  "lastname": "Kent",
-}
-
-sessionStorage.setItem("user", JSON.stringify(testUser))
-
 contacts()
 
 async function contacts() {
