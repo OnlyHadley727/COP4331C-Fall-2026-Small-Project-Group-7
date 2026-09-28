@@ -30,7 +30,7 @@ loginForm.addEventListener("submit", async (e) => {
     loginError.textContent = ""
 
     const username = document.getElementById("login-username").value.trim()
-    const password = document.getElementById("login-password").value
+    const password = md5( document.getElementById("login-password").value )
     if(username.length === 0 || password.length === 0){
         loginError.textContent = "Enter a username and password."
         return
@@ -70,7 +70,7 @@ registerForm.addEventListener("submit", async (e) => {
     const firstname = document.getElementById("register-firstname").value.trim()
     const lastname = document.getElementById("register-lastname").value.trim()
     const username = document.getElementById("register-username").value.trim()
-    const password = document.getElementById("register-password").value
+    const password = md5( document.getElementById("register-password").value )
 
     if(firstname.length === 0 || lastname.length === 0 || username.length === 0 || password.length === 0){
         registerError.textContent = "Please fill in all fields."
