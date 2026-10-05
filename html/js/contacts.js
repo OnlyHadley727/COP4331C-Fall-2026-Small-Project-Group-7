@@ -140,7 +140,7 @@ function displayContacts(userContacts) {
 async function fetchContacts() {
     try {
         const user = JSON.parse(sessionStorage.getItem("user"))
-        const res = await fetch("http://68.183.24.52/API/SearchContacts.php", {
+        const res = await fetch("http://cop4331-contact-manager.xyz/API/SearchContacts.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -164,7 +164,8 @@ async function fetchContacts() {
 
 async function deleteContact(id) {
     try {
-        const res = await fetch("http://68.183.24.52/API/RemoveContacts.php", {
+        const user = JSON.parse(sessionStorage.getItem("user"))
+        const res = await fetch("http://cop4331-contact-manager.xyz/API/RemoveContacts.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
